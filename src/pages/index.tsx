@@ -33,7 +33,9 @@ function showToast(message: string, type: 'success' | 'error' | 'warning') {
     }
 
     fetchMovies();
-  }, []);
+    try {
+  setError(false);
+  const response = await tmdbApi.get('/movie/popular');
 
   async function handleSearch() {
     if (!search.trim()) {
@@ -43,7 +45,8 @@ function showToast(message: string, type: 'success' | 'error' | 'warning') {
 
     try {
       setLoading(true);
-  
+  setError(false);
+
       const response = await tmdbApi.get('/search/movie', {
         params: { query: search },
       });
