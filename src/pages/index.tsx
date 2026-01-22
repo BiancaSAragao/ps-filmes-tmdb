@@ -1,3 +1,4 @@
+import Grid from '@mui/material/Grid';
 import { useEffect, useState } from 'react';
 import {
   Box,
@@ -6,7 +7,7 @@ import {
   TextField,
   Button,
   Snackbar,
-  Alert
+  Alert,
 } from '@mui/material';
 import MovieCard from '@/components/MovieCard';
 import { tmdbApi } from '@/services/tmdb';
@@ -28,7 +29,6 @@ export default function Home() {
     setToastOpen(true);
   }
 
-  // Buscar filmes populares ao carregar a página
   useEffect(() => {
     async function fetchMovies() {
       try {
@@ -45,7 +45,6 @@ export default function Home() {
     fetchMovies();
   }, []);
 
-  // Buscar filmes pelo campo de busca
   async function handleSearch() {
     if (!search.trim()) {
       showToast('Digite algo para buscar um filme.', 'warning');
@@ -104,24 +103,25 @@ export default function Home() {
         </Typography>
       )}
 
-      {/* Lista de filmes */}
+      {/* Lista de filmes (Grid v2) */}
       {!loading && !error && (
-        <Box
-          display="grid"
-          gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))"
-          gap={2}
-          p={2}
-        >
+        <Grid container spacing={3} p={2}>
           {movies.map((movie) => (
-            <MovieCard
+            <Grid
               key={movie.id}
-              id={movie.id}
-              title={movie.title}
-              posterPath={movie.poster_path}
-              releaseDate={movie.release_date}
-            />
+              size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }}
+              display="flex"
+              justifyContent="center"
+            >
+              <MovieCard
+                id={movie.id}
+                title={movie.title}
+                posterPath={movie.poster_path}
+                releaseDate={movie.release_date}
+              />
+            </Grid>
           ))}
-        </Box>
+        </Grid>
       )}
 
       {/* Toast */}
