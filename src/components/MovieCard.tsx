@@ -1,29 +1,36 @@
 import { Card, CardContent, CardActionArea, Typography } from '@mui/material';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import noImage from '@/assets/placeholder.png';
 
 type MovieCardProps = {
+  id: number;
   title: string;
   posterPath: string | null;
   releaseDate?: string;
-  onClick?: () => void;
 };
 
 export default function MovieCard({
+  id,
   title,
   posterPath,
   releaseDate,
-  onClick,
 }: MovieCardProps) {
+  const router = useRouter();
+
+  const imageSrc = posterPath
+    ? `https://image.tmdb.org/t/p/w500${posterPath}`
+    : noImage;
+
+  function handleClick() {
+    router.push(`/movie/${id}`);
+  }
+
   return (
     <Card sx={{ maxWidth: 200 }}>
-      <CardActionArea onClick={onClick}>
+      <CardActionArea onClick={handleClick}>
         <Image
-          src={
-            posterPath
-              ? `https://image.tmdb.org/t/p/w500${posterPath}`
-              : noImage
-          }
+          src={imageSrc}
           alt={title}
           width={200}
           height={300}
