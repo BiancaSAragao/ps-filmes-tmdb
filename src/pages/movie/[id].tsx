@@ -1,6 +1,13 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Box, CircularProgress, Typography, Chip } from '@mui/material';
+import {
+  Box,
+  CircularProgress,
+  Typography,
+  Chip,
+  Divider,
+  Grid,
+} from '@mui/material';
 import Image from 'next/image';
 import { tmdbApi } from '@/services/tmdb';
 import noImage from '@/assets/placeholder.png';
@@ -57,36 +64,60 @@ export default function MovieDetailsPage() {
   }
 
   return (
-    <Box display="flex" gap={4} p={4} flexWrap="wrap">
-      <Image
-        src={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-            : noImage
-        }
-        alt={movie.title}
-        width={300}
-        height={450}
-        style={{ borderRadius: 8 }}
-      />
+    <Box p={{ xs: 2, md: 4 }}>
+      <Grid container spacing={4} justifyContent="center">
 
-      <Box maxWidth={600}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
-          {movie.title}
-        </Typography>
+        {/* Poster */}
+        <Grid size={{ xs: 12, md: 4 }} display="flex" justifyContent="center">
+          <Image
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                : noImage
+            }
+            alt={movie.title}
+            width={300}
+            height={450}
+            style={{
+              borderRadius: 12,
+              boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+            }}
+          />
+        </Grid>
 
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          {movie.release_date?.slice(0, 4)} • {movie.runtime} min
-        </Typography>
+        {/* Informações */}
+        <Grid
+          size={{ xs: 12, md: 8 }}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          textAlign="center"
+        >
+          <Typography variant="h4" fontWeight="bold" gutterBottom>
+            {movie.title}
+          </Typography>
 
-        <Box display="flex" gap={1} flexWrap="wrap" my={2}>
-          {movie.genres.map((genre) => (
-            <Chip key={genre.id} label={genre.name} />
-          ))}
-        </Box>
+          <Typography variant="body2" color="text.secondary" gutterBottom>
+            {movie.release_date?.slice(0, 4)} • {movie.runtime} min
+          </Typography>
 
-        <Typography variant="body1">{movie.overview}</Typography>
-      </Box>
+          <Box display="flex" gap={1} flexWrap="wrap" my={2} justifyContent="center">
+            {movie.genres.map((genre) => (
+              <Chip key={genre.id} label={genre.name} />
+            ))}
+          </Box>
+
+          <Divider sx={{ my: 2, width: '100%' }} />
+
+          <Typography variant="h6" gutterBottom>
+            Sinopse
+          </Typography>
+
+          <Typography variant="body1" lineHeight={1.7} maxWidth={700}>
+            {movie.overview || 'Sinopse não disponível.'}
+          </Typography>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
