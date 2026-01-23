@@ -1,40 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🎬 PS Filmes TMDB
 
-## Getting Started
+Aplicação web desenvolvida com **Next.js**, **TypeScript** e **Material UI** que consome a API do **The Movie Database (TMDB)** para exibir filmes populares, realizar buscas e visualizar detalhes completos de cada filme.
 
-First, run the development server:
+---
+
+## 🚀 Funcionalidades
+
+- 🔍 Busca de filmes por título
+- 📄 Página de detalhes do filme
+- ⚡ Skeleton loading com animação
+- 🔔 Feedback visual com Snackbar (erros, busca vazia, erro de API)
+- 📱 Layout totalmente responsivo (mobile first)
+- 🧩 Componentes reutilizáveis
+- 🎨 UI moderna com Material UI
+- 🌐 Integração com API externa (TMDB)
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+- Next.js
+- React
+- TypeScript
+- Material UI (MUI)
+- Axios
+- TMDB API
+
+---
+
+## ⚙️ Como executar o projeto
+
+### 1. Clonar o repositório
+
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd ps-filmes-tmdb
+```
+
+### 2. Instalar Dependências
+
+```bash
+npm install
+```
+
+### 3. Configurar variáveis de ambiente
+
+Crie um arquivo .env.local baseado no .env.example:
+
+```env
+NEXT_PUBLIC_TMDB_API_KEY=coloque_sua_api_key_aqui
+``` 
+
+Você pode obter sua API Key em:
+https://www.themoviedb.org/settings/api
+
+
+### 4. Rodar o Projeto
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Então acesse:
+https://localhost:3000
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## 🏗️ Build de produção
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+npm run build
+npm start
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## 📁 Estrutura do projeto
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+src/
+ ├─ components/
+ ├─ pages/
+ │   ├─ movie/[id].tsx
+ │   └─ index.tsx
+ ├─ services/
+ ├─ styles/
+ ├─ theme/
+ └─ types/
+```
 
-## Learn More
+## 📌 Observações
 
-To learn more about Next.js, take a look at the following resources:
+ - O projeto utiliza variáveis de ambiente para proteger a API Key.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+ - O arquivo .env.local não deve ser versionado.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+ - O layout foi desenvolvido com foco em responsividade e experiência do usuário.
 
-## Deploy on Vercel
+## 👩‍💻 Autora
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+Desenvolvido por Bianca Aragão
