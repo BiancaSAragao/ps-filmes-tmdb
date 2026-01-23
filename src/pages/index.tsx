@@ -2,7 +2,6 @@ import Grid from '@mui/material/Grid';
 import { useEffect, useState } from 'react';
 import {
   Box,
-  CircularProgress,
   Typography,
   TextField,
   Button,
@@ -12,6 +11,8 @@ import {
 import MovieCard from '@/components/MovieCard';
 import { tmdbApi } from '@/services/tmdb';
 import { Movie } from '@/types/movie';
+import MovieCardSkeleton from '@/components/MovieCardSkeleton';
+
 
 export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -91,10 +92,23 @@ export default function Home() {
 
       {/* Loading */}
       {loading && (
-        <Box display="flex" justifyContent="center" mt={10}>
-          <CircularProgress />
-        </Box>
-      )}
+  <Box p={2} mb={2}>
+    <Grid container spacing={3}>
+      {Array.from({ length: 12 }).map((_, index) => (
+        <Grid
+          key={index}
+          size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }}
+          display="flex"
+          justifyContent="center"
+        >
+          <MovieCardSkeleton />
+        </Grid>
+      ))}
+    </Grid>
+  </Box>
+)}
+
+
 
       {/* Erro */}
       {error && (

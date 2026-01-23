@@ -2,6 +2,7 @@ import { Card, CardContent, CardActionArea, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import noImage from '@/assets/placeholder.png';
+import { Fade } from '@mui/material';
 
 type MovieCardProps = {
   id: number;
@@ -27,18 +28,39 @@ export default function MovieCard({
   }
 
   return (
-    <Card sx={{ maxWidth: 200 }}>
+    <Fade in timeout={800}>
+    <Card
+  sx={{
+    maxWidth: 200,
+    
+    transition: 'all 0.25s ease',
+    cursor: 'pointer',
+    '&:hover': {
+      transform: 'translateY(-6px) scale(1.03)',
+      boxShadow: '0 12px 25px rgba(0,0,0,0.25)',
+    },
+  }}
+>
+
       <CardActionArea onClick={handleClick}>
         <Image
           src={imageSrc}
           alt={title}
           width={200}
           height={300}
+          loading="lazy"
           style={{ objectFit: 'cover' }}
         />
 
-        <CardContent>
-          <Typography variant="subtitle1" fontWeight="bold" noWrap>
+        <CardContent sx={{ textAlign: 'center' }}>
+
+          <Typography
+  variant="subtitle1"
+  fontWeight={600}
+  noWrap
+  sx={{ mt: 1 }}
+>
+
             {title}
           </Typography>
 
@@ -50,5 +72,6 @@ export default function MovieCard({
         </CardContent>
       </CardActionArea>
     </Card>
+    </Fade>
   );
 }
