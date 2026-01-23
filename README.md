@@ -33,7 +33,7 @@ Aplicação web desenvolvida com **Next.js**, **TypeScript** e **Material UI** q
 ### 1. Clonar o repositório
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone <https://github.com/BiancaSAragao/ps-filmes-tmdb>
 cd ps-filmes-tmdb
 ```
 
