@@ -1,8 +1,7 @@
-import { Card, CardContent, CardActionArea, Typography } from '@mui/material';
+import { Card, CardContent, CardActionArea, Typography, Fade } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import noImage from '@/assets/placeholder.png';
-import { Fade } from '@mui/material';
 
 type MovieCardProps = {
   id: number;
